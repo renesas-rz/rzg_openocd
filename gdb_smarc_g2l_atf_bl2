@@ -15,9 +15,9 @@ mon r9a07g044l.a55.0 aarch64 smp off
 
 # Load BL2 code and use related symbols
 # You need to adjust the path to reflect yours
-load ~/repos/rzg_trusted-firmware-a/build/rzg2l/debug/bl2/bl2.elf
+load ./build/rzg2l/debug/bl2/bl2.elf
 shell sleep 1
-symbol-file ~/repos/rzg_trusted-firmware-a/build/rzg2l/debug/bl2/bl2.elf
+symbol-file ./build/rzg2l/debug/bl2/bl2.elf
 shell sleep 1
 
 # Restore BOOT_ID to the expected value: 0x3 = QSPI boot
