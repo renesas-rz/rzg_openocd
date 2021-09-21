@@ -1,8 +1,11 @@
 # This script is meant to debug the SMARC RZ/G2L Arm Trusted Firmware BL2
 # Please set the board boot mode to SCIF boot: SW11 ON-OFF-ON-OFF
+# It must be copied in the source root folder
 
 # Connect to OpenOCD
-target remote localhost:3333
+# If the script is launched from GDB command line then the next line shall not be commented out
+# In Eclipse it is not needed since the connection is attempted by Eclipse itself
+#target extended-remote :3333
 mon reset
 mon halt
 shell sleep 0.5

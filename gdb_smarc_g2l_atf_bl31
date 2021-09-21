@@ -1,10 +1,13 @@
 # This script is meant to debug the SMARC RZ/G2L Arm Trusted Firmware BL31
 # Please set the board boot mode to SCIF boot: SW11 ON-OFF-ON-OFF
+# It must be copied in the source root folder
 # This script works only if OpenOCD write memory functions are patched:
 # http://openocd.zylin.com/#/c/6266/
 
 # Connect to OpenOCD
-target remote localhost:3333
+# If the script is launched from GDB command line then the next line shall not be commented out
+# In Eclipse it is not needed since the connection is attempted by Eclipse itself
+#target remote localhost:3333
 mon reset
 mon halt
 shell sleep 0.5
@@ -14,10 +17,9 @@ mon r9a07g044l.a55.0 aarch64 smp off
 shell sleep 0.5
 
 # Load BL2 code and use related symbols
-# You need to adjust the path to reflect yours
-load ~/repos/rzg_trusted-firmware-a/build/rzg2l/debug/bl2/bl2.elf
+load ./build/rzg2l/debug/bl2/bl2.elf
 shell sleep 1
-symbol-file ~/repos/rzg_trusted-firmware-a/build/rzg2l/debug/bl2/bl2.elf
+symbol-file ./build/rzg2l/debug/bl2/bl2.elf
 shell sleep 1
 
 # Restore BOOT_ID to the expected value: 0x3 = QSPI boot
@@ -43,10 +45,9 @@ shell sleep 1
 clear bl2_main
 
 # Load BL31 code and related symbols
-# You need to adjust the path to reflect yours
-load ~/repos/rzg_trusted-firmware-a/build/rzg2l/debug/bl31/bl31.elf
+load ./build/rzg2l/debug/bl31/bl31.elf
 shell sleep 1 
-symbol-file  ~/repos/rzg_trusted-firmware-a/build/rzg2l/debug/bl31/bl31.elf
+symbol-file  ./build/rzg2l/debug/bl31/bl31.elf
 shell sleep 1
 
 hbreak bl31_main
@@ -57,4 +58,4 @@ shell sleep 1
 mem 0x40000000 0x4FFFFFFF ro
 
 shell sleep 1
-continue
+#continue
