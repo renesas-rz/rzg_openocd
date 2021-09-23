@@ -14,7 +14,6 @@ shell sleep 0.5
 mon r9a07g044l.a55.0 aarch64 smp off
 
 # Load BL2 code and use related symbols
-# You need to adjust the path to reflect yours
 load ./build/rzg2l/debug/bl2/bl2.elf
 shell sleep 1
 symbol-file ./build/rzg2l/debug/bl2/bl2.elf

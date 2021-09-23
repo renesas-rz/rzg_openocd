@@ -1,0 +1,55 @@
+# This script is meant to debug the SMARC RZ/G2L U-boot
+# Please set the board boot mode to SCIF boot: SW11 ON-OFF-ON-OFF
+# It must be copied in the u-boot source root folder
+# It is assumed that ATF code is already programmed
+#
+# This script works only if OpenOCD write memory functions are patched:
+# http://openocd.zylin.com/#/c/6266/
+
+# Connect to OpenOCD
+# If the script is launched from GDB command line then the next line shall not be commented out
+# In Eclipse it is not needed since the connection is attempted by Eclipse itself
+#target remote localhost:3333
+mon reset
+mon halt
+shell sleep 0.5
+
+# Disable SMP
+mon r9a07g044l.a55.0 aarch64 smp off
+shell sleep 0.5
+
+load ../rzg_trusted-firmware-a_private/build/rzg2l/debug/bl2/bl2.elf
+shell sleep 1
+
+# Restore BOOT_ID to the expected value: 0x3 = QSPI boot
+mon mww 0x10000 0x3
+
+# Set internal RAM to RO to force GDB using HW breakpoints
+mem 0x10000 0x2FFFF ro
+
+# Break at U-boot entry point
+hbreak *0x50000000
+continue
+
+shell sleep 1
+
+# Add DDR memory region
+mem 0x50000000 0xBFFFFFFF rw
+
+# Load U-boot code (binary) and related symbols
+# The load may take a while, ~ 50 seconds with J-link lite. Be patient.
+#call memset(0x50000000, 0xCC, 0x10000)
+restore u-boot.bin binary 0x50000000
+shell sleep 1
+symbol-file u-boot
+shell sleep 1
+
+# Set a Breakpoint to the start of the U-boot relocation routine
+hb relocate_code
+c
+
+# Now we are ready to relocate U-boot symbols, note that "-o" requires a relatively new GDB (9.1 is OK).
+symbol-file u-boot -o gd->reloc_off
+
+hb run_main_loop
+c

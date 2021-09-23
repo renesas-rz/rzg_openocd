@@ -1,6 +1,6 @@
 # This script is meant to debug the SMARC RZ/G2L U-boot
 # Please set the board boot mode to SCIF boot: SW11 ON-OFF-ON-OFF
-# It must be copied in the u-boot source root folder
+# It must be copied in the u-boot source root folder, binaries are expected in the .out folder
 # It is assumed that ATF code (strictly required) resides at the same level as u-boot, e.g.:
 # PATH/rzg_trusted-firmware-a
 # PATH/renesas-u-boot-cip
@@ -88,7 +88,6 @@ hb relocate_code
 c
 
 # Now we are ready to relocate U-boot symbols, note that "-o" requires a relatively new GDB (9.1 is OK).
-# Do not forget to adjust the path to reflect yours also here
 symbol-file .out/u-boot -o gd->reloc_off
 
 hb run_main_loop
