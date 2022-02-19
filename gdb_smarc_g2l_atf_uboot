@@ -65,7 +65,7 @@ jump bl2_load_images:after_load
 
 # Load U-boot (BL33)
 mem 0x50000000 0xBFFFFFFF rw
-restore ./u-boot.bin binary 0x50000000
+restore ../temp/u-boot-test/.out/u-boot.bin binary 0x50000000
 set $x0=0
 jump bl2_load_images:after_load
 
@@ -74,7 +74,7 @@ delete 1
 delete 2
 
 # Load U-Boot symbols before the code relocation
-symbol-file ./u-boot
+symbol-file ../temp/u-boot-test/.out/u-boot
 shell sleep 1
 
 # Set a Breakpoint to the start of the U-boot relocation routine

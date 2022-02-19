@@ -12,7 +12,9 @@ sudo apt-get install libtool pkg-config texinfo libusb-dev libusb-1.0.0-dev libf
 # Clone, patch, configure, build
 git clone https://github.com/ntfreak/openocd
 pushd openocd
+wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0001-Temporary-patch-to-avoid-crash-to-double-free.patch
 wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0002-target-aarch64-Write-Memory-function-fix-for-self-mo.patch
+git am 0001-Temporary-patch-to-avoid-crash-to-double-free.patch
 git am 0002-target-aarch64-Write-Memory-function-fix-for-self-mo.patch
 ./bootstrap
 ./configure --prefix ${PWD}/installdir --enable-jlink --enable-ftdi
