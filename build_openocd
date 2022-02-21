@@ -16,7 +16,7 @@ wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0002-target
 git am 0001-Temporary-patch-to-avoid-crash-to-double-free.patch
 ./bootstrap
 ./configure --prefix ${PWD}/installdir --enable-jlink --enable-ftdi
-make -j(nproc)
+make -j$(nproc)
 make install
 popd
 RED='\033[0;31m'
