@@ -7,6 +7,9 @@
 # In Eclipse it is not needed since the connection is attempted by Eclipse itself
 #target remote localhost:3333
 mon reset
+# Re-examine after reset
+mon r9a07g044l.a55.0 arp_examine 0
+mon r9a07g044l.a55.0 arp_examine 1
 mon halt
 shell sleep 0.5
 
