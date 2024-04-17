@@ -23,11 +23,12 @@ git checkout -b v0.12.0_rz 04154af5d6cd5fe76a2583778379bdacb5aa6fb0
 #    $ wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0001-tcl-target-renesas_rz_g2-Rename-to-renesas_rz-and-ad.patch
 #    $ wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0002-target-aarch64-MRS-MSR-support-for-system-register-a.patch
 #    $ wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0003-target-aarch64-enable-disable-mmu-new-commands.patch
+#    $ wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0004-target-aarch64-Add-code-to-invaldate-the-instruction.patch
 #    $ mv 000*.patch ..
 git am ../0001-tcl-target-renesas_rz_g2-Rename-to-renesas_rz-and-ad.patch
 git am ../0002-target-aarch64-MRS-MSR-support-for-system-register-a.patch
 git am ../0003-target-aarch64-enable-disable-mmu-new-commands.patch
-
+git am ../0004-target-aarch64-Add-code-to-invaldate-the-instruction.patch
 # Configure
 ./bootstrap
 ./configure --prefix ${PWD}/installdir --enable-jlink --enable-ftdi
