@@ -15,14 +15,18 @@ git clone https://github.com/openocd-org/openocd
 # Enter directory
 pushd openocd
 
-# Create a new branch off the v0.12.0 release
-git checkout -b v0.12.0_rz v0.12.0
+# Create a new branch off a specific commit
+git checkout -b v0.12.0_rz 04154af5d6cd5fe76a2583778379bdacb5aa6fb0
 
-# Apply an extra patch
+# Apply extra patches
 # Manually download:
-#    $ wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0002-target-aarch64-Write-Memory-function-fix-for-self-mo.patch
-#    $ mv 0002-*.patch ..
-git am ../0002-target-aarch64-Write-Memory-function-fix-for-self-mo.patch
+#    $ wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0001-tcl-target-renesas_rz_g2-Rename-to-renesas_rz-and-ad.patch
+#    $ wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0002-target-aarch64-MRS-MSR-support-for-system-register-a.patch
+#    $ wget https://raw.githubusercontent.com/renesas-rz/rzg_openocd/master/0003-target-aarch64-enable-disable-mmu-new-commands.patch
+#    $ mv 000*.patch ..
+git am ../0001-tcl-target-renesas_rz_g2-Rename-to-renesas_rz-and-ad.patch
+git am ../0002-target-aarch64-MRS-MSR-support-for-system-register-a.patch
+git am ../0003-target-aarch64-enable-disable-mmu-new-commands.patch
 
 # Configure
 ./bootstrap
