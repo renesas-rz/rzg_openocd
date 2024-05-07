@@ -1,0 +1,31 @@
+From ab64f6821320f5de48cb06a417ca7266754849f0 Mon Sep 17 00:00:00 2001
+From: MicBiso <michele.bisogno.ct@renesas.com>
+Date: Tue, 7 May 2024 16:34:37 +0200
+Subject: [PATCH 5/5] tcl/target/renesas_rz: add hwthread and coreid
+
+Add hwthread and coreid to support multi-core Linux kernel
+debugging with gdb. Both settings are required by gdb to
+detect different cores as different threads.
+
+Change-Id: I04de09e3421094be7d6cd98d51098b57cca17006
+Signed-off-by: MicBiso <michele.bisogno.ct@renesas.com>
+---
+ tcl/target/renesas_rz.cfg | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tcl/target/renesas_rz.cfg b/tcl/target/renesas_rz.cfg
+index a0489de3d..c0899d073 100644
+--- a/tcl/target/renesas_rz.cfg
++++ b/tcl/target/renesas_rz.cfg
+@@ -162,7 +162,7 @@ proc setup_a5x {core_name dbgbase ctibase num boot} {
+ 			-baseaddr [lindex $ctibase $_core]
+ 		target create $_TARGETNAME aarch64 -dap $::_DAPNAME \
+ 			-ap-num $::_ap_num -dbgbase [lindex $dbgbase $_core] \
+-			-cti $_CTINAME
++			-cti $_CTINAME -rtos hwthread -coreid $_core
+ 		if { $_core > 0 || $boot == 0 } {
+ 			$_TARGETNAME configure -defer-examine
+ 		}
+-- 
+2.34.1
+
