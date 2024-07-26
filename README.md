@@ -2,7 +2,7 @@
 
 For guidance please refer to the following wiki pages:
 
-https://renesas.info/wiki/RZ-G/RZG_openocd
+https://jira-gasg.renesas.eu/confluence/pages/viewpage.action?pageId=184060167
 
-https://renesas.info/wiki/RZ-G/RZG2_Eclipse_develop_and_debug
+https://jira-gasg.renesas.eu/confluence/display/REN/RZ+Eclipse+Develop+and+Debug
 
