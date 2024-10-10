@@ -7,7 +7,7 @@ set -e
 set -u
 
 # Install necessary packages
-sudo apt-get install libtool pkg-config texinfo libusb-dev libusb-1.0.0-dev libftdi-dev autoconf
+sudo apt-get install libtool pkg-config texinfo libusb-dev libusb-1.0.0-dev libftdi-dev libjaylink-dev autoconf
 
 # Clone
 git clone https://github.com/openocd-org/openocd
