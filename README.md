@@ -2,7 +2,7 @@
 
 For guidance please refer to the following wiki pages:
 
-https://jira-gasg.renesas.eu/confluence/pages/viewpage.action?pageId=184060167
+https://renesas-wiki.atlassian.net/wiki/spaces/REN/pages/1018014/RZ+G+OpenOCD+Information
 
-https://jira-gasg.renesas.eu/confluence/display/REN/RZ+Eclipse+Develop+and+Debug
+https://renesas-wiki.atlassian.net/wiki/spaces/REN/pages/1018023/RZ+Eclipse+Develop+and+Debug
 
